@@ -34,4 +34,16 @@
         android:layout_below="@id/btLogin"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/textView"
+        style="@style/style01"
+        android:layout_below="@id/btLogin"
+        android:text="@string/android_info" />
+
+    <TextView
+        style="@style/style02"
+        android:text="Hello Android!"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
