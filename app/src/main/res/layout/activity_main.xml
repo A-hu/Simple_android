@@ -21,18 +21,52 @@
         android:hint="@string/text_Password"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btLogin"
+    <EditText
+        android:id="@+id/etPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etPassword"
-        android:text="@string/text_Login" />
+        android:hint="Phone Number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPhone"
+        android:hint="Age"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btSubmit"
+        android:onClick="onSubmitClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAge"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_Submit" />
+
+    <Button
+        android:id="@+id/btClear"
+        android:text="@string/text_btClear"
+        android:layout_below="@id/btSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvSubmitMessage"
+        android:lines="5"
+        android:layout_marginTop="10dp"
+        android:background="#DDDDFF"
+        android:layout_below="@id/btClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btLogin"
+        android:layout_below="@id/tvSubmitMessage"
         android:textSize="20sp" />
 
     <TextView

@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Simple_android</string>
-    <string name="text_Name">Name</string>
+    <string name="text_Name">User Name</string>
     <string name="text_Password">Password</string>
-    <string name="text_Login">Login</string>
+    <string name="text_Submit">Submit</string>
     <string name="android_info">Hi, Android!</string>
+    <string name="text_btClear">Clear</string>
+    <string name="msg_ClearFields">Clear all fields</string>
 </resources>

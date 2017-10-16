@@ -8,33 +8,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText etName, etPasswrd;
+    private EditText etName, etPasswrd, etPhone, etAge;
     private TextView tvResult;
-    private Button btLogin;
-    private TextView tvMessage;
+    private Button btLogin, btClear;
+    private TextView tvMessage, tvSubmitMessage;
     private int pointCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        etName = (EditText) findViewById(R.id.etName);
-        etPasswrd = (EditText) findViewById(R.id.etPassword);
-        tvResult = (TextView) findViewById(R.id.tvResult);
-        btLogin = (Button) findViewById(R.id.btLogin);
-        btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = etName.getText().toString();
-                String password = etPasswrd.getText().toString();
-                String text = "Name : " + name + "\nPassword :" + password;
-                tvResult.setText(text);
-            }
-        });
+//        etName = (EditText) findViewById(R.id.etName);
+//        etPasswrd = (EditText) findViewById(R.id.etPassword);
+//        tvResult = (TextView) findViewById(R.id.tvResult);
+//        btLogin = (Button) findViewById(R.id.btLogin);
+//        btLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String name = etName.getText().toString();
+//                String password = etPasswrd.getText().toString();
+//                String text = "Name : " + name + "\nPassword :" + password;
+//                tvResult.setText(text);
+//            }
+//        });
 
         findViews();
+        findSubmitViews();
     }
 
     private void findViews(){
@@ -74,6 +76,47 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void findSubmitViews(){
+        etName = (EditText) findViewById(R.id.etName);
+        etPasswrd = (EditText) findViewById(R.id.etPassword);
+        etPhone = (EditText) findViewById(R.id.etPhone);
+        etAge = (EditText) findViewById(R.id.etAge);
+        btClear = (Button) findViewById(R.id.btClear);
+        tvSubmitMessage = (TextView) findViewById(R.id.tvSubmitMessage);
+
+        btClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etName.setText(null);
+                etPasswrd.setText(null);
+                etPhone.setText(null);
+                etAge.setText(null);
+                tvSubmitMessage.setText(null);
+
+                Toast.makeText(
+                        MainActivity.this,
+                        R.string.msg_ClearFields,
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+    }
+
+    public void onSubmitClick(View view){
+        String user = etName.getText().toString().trim();
+        String password = etPasswrd.getText().toString().trim();
+        String phone = etPhone.getText().toString().trim();
+        String age = etAge.getText().toString().trim();
+        String text = "";
+
+        text += "user name = " + user + "\n";
+        text += "password = " + password + "\n";
+        text += "phone = " + phone + "\n";
+        text += "age = " + age + "\n";
+
+        tvSubmitMessage.setText(text);
     }
 
 //    public void onLoginClick(View view) {
