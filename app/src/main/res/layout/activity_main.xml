@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp"
@@ -37,13 +38,22 @@
     <TextView
         android:id="@+id/textView"
         style="@style/style01"
-        android:layout_below="@id/btLogin"
+        android:layout_below="@id/tvResult"
         android:text="@string/android_info" />
 
     <TextView
+        android:id="@+id/textView2"
         style="@style/style02"
-        android:text="Hello Android!"
         android:layout_below="@id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Hello Android!" />
 
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_margin="5dp"
+        android:text="Please touch the screen"
+        android:textSize="18sp" />
 </RelativeLayout>

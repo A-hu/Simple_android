@@ -21,21 +21,21 @@
             android:layout_height="wrap_content"
             android:onClick="onImageG1Click"
             android:scaleType="center"
-            android:src="@drawable/Mark" />
+            android:src="@drawable/mark" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:onClick="onImageG1Click"
             android:scaleType="center"
-            android:src="@drawable/Jeff" />
+            android:src="@drawable/jeff" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:onClick="onImageG1Click"
             android:scaleType="center"
-            android:src="@drawable/Elon" />
+            android:src="@drawable/elon" />
 
     </FrameLayout>
 
@@ -51,21 +51,21 @@
             android:layout_height="wrap_content"
             android:onClick="onImageG2Click"
             android:scaleType="center"
-            android:src="@drawable/Mark" />
+            android:src="@drawable/mark" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:onClick="onImageG2Click"
             android:scaleType="center"
-            android:src="@drawable/Jeff" />
+            android:src="@drawable/jeff" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:onClick="onImageG2Click"
             android:scaleType="center"
-            android:src="@drawable/Elon" />
+            android:src="@drawable/elon" />
     </LinearLayout>
 
     <Button
