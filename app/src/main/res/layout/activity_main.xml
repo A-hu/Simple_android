@@ -1,66 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="12dp"
+    android:paddingBottom="16dp"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp"
+    android:paddingTop="16dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etName"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/text_Name" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etName"
-        android:hint="@string/text_Password"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_Name" />
 
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPassword"
-        android:hint="Phone Number"
-        android:inputType="phone" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/etAge"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPhone"
-        android:hint="Age"
-        android:inputType="number" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_Password"
+            android:inputType="textPassword" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:inputType="number" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btSubmit"
-        android:onClick="onSubmitClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etAge"
         android:layout_marginTop="10dp"
+        android:onClick="onSubmitClick"
         android:text="@string/text_Submit" />
 
     <Button
         android:id="@+id/btClear"
-        android:text="@string/text_btClear"
-        android:layout_below="@id/btSubmit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btSubmit"
+        android:text="@string/text_btClear" />
 
     <TextView
         android:id="@+id/tvSubmitMessage"
-        android:lines="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btClear"
         android:layout_marginTop="10dp"
         android:background="#DDDDFF"
-        android:layout_below="@id/btClear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:lines="5" />
 
     <TextView
         android:id="@+id/tvResult"
@@ -69,25 +94,31 @@
         android:layout_below="@id/tvSubmitMessage"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/style01"
-        android:layout_below="@id/tvResult"
-        android:text="@string/android_info" />
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/style02"
-        android:layout_below="@id/textView"
-        android:layout_centerHorizontal="true"
-        android:text="Hello Android!" />
-
-    <TextView
-        android:id="@+id/tvMessage"
+    <RelativeLayout
+        android:id="@+id/relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView2"
-        android:layout_margin="5dp"
-        android:text="Please touch the screen"
-        android:textSize="18sp" />
-</RelativeLayout>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/style01"
+            android:text="@string/android_info" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/style02"
+            android:layout_below="@id/textView"
+            android:layout_centerHorizontal="true"
+            android:text="Hello Android!" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:layout_margin="5dp"
+            android:text="Please touch the screen"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</LinearLayout>
