@@ -6,7 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btLogin, btClear;
     private TextView tvMessage, tvSubmitMessage;
     private int pointCount;
+    private TextView tvCount;
+    private ScrollView scrollView;
+    private LinearLayout linearLayout;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         findSubmitViews();
+        findCountView();
+        tvCount.setText(String.valueOf(count));
     }
 
     private void findViews(){
@@ -119,6 +127,28 @@ public class MainActivity extends AppCompatActivity {
         tvSubmitMessage.setText(text);
     }
 
+    private void findCountView(){
+        tvCount = (TextView) findViewById(R.id.tvCount);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+    }
+
+    public void onAddClick(View view){
+        count++;
+        tvCount.setText(String.valueOf(count));
+
+        TextView textView = new TextView(this);
+        textView.setText(String.valueOf(count));
+        linearLayout.addView(textView);
+
+        // New thread
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+    }
 //    public void onLoginClick(View view) {
 //        String name = etName.getText().toString();
 //        String password = etPasswrd.getText().toString();
