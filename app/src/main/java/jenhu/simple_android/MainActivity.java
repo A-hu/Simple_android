@@ -14,6 +14,7 @@ import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private int count = 0;
     private WebView webView;
     private RatingBar ratingBar;
+    private TextView tvText;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         findSubmitViews();
         findCountView();
+        findSeekBarViews();
         tvCount.setText(String.valueOf(count));
 
         webView = (WebView) findViewById(R.id.webView);
@@ -184,5 +188,26 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    public void findSeekBarViews(){
+        tvText = (TextView) findViewById(R.id.tvText);
+        seekBar = (SeekBar) findViewById(R.id.sbSize);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvText.setTextSize(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this, "start size = " + seekBar.getProgress(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this, "stop size = " + seekBar.getProgress(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

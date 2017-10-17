@@ -16,18 +16,48 @@
         android:paddingTop="16dp"
         tools:context=".MainActivity">
 
+
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SeekBar"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <SeekBar
+            android:id="@+id/sbSize"
+            android:max="50"
+            android:progress="20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RatingBar"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
         <RatingBar
             android:id="@+id/ratingBar"
-            android:numStars="5"
-            android:stepSize="0.5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView"
+            android:textAlignment="center"
+            android:textSize="20dp" />
 
         <WebView
             android:id="@+id/webView"
-            android:minHeight="350dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:minHeight="350dp" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
