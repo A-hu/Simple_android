@@ -1,5 +1,6 @@
 package jenhu.simple_android;
 
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,15 +9,21 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
     private EditText etName, etPasswrd, etPhone, etAge;
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RatingBar ratingBar;
     private TextView tvText;
     private SeekBar seekBar;
+    private TextView tvButtonMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         findSubmitViews();
         findCountView();
         findSeekBarViews();
+        findButtonViews();
         tvCount.setText(String.valueOf(count));
 
         webView = (WebView) findViewById(R.id.webView);
@@ -189,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     public void findSeekBarViews(){
         tvText = (TextView) findViewById(R.id.tvText);
         seekBar = (SeekBar) findViewById(R.id.sbSize);
@@ -209,5 +219,48 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "stop size = " + seekBar.getProgress(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void findButtonViews(){
+        tvButtonMessage = (TextView) findViewById(R.id.tvButtonMessage);
+        RadioGroup rgStatus = (RadioGroup) findViewById(R.id.rgStatus);
+        Switch swFocus = (Switch) findViewById(R.id.swFocus);
+
+        rgStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                tvButtonMessage.setText(radioButton.getText());
+            }
+        });
+
+        swFocus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Switch sw = (Switch) buttonView;
+                String swName = sw.getText().toString();
+                String message = "";
+                if(isChecked) message += swName + " " + sw.getTextOn();
+                else message += swName + " " + sw.getTextOff();
+
+                tvButtonMessage.setText(message);
+            }
+        });
+    }
+
+    public void onFeelClick(View v){
+        CheckBox checkBox = (CheckBox) v;
+        String checkBoxName = checkBox.getText().toString();
+        String message;
+        if(checkBox.isChecked()) message = "checked " + checkBoxName;
+        else message = "unchecked " + checkBoxName;
+
+        tvButtonMessage.setText(message);
+    }
+
+    public void onConcentratedClick(View v){
+        ToggleButton toggleButton = (ToggleButton) v;
+        tvMessage.setText(toggleButton.getText());
     }
 }

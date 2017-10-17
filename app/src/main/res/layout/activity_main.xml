@@ -18,6 +18,92 @@
 
 
         <TextView
+            android:id="@+id/tvButtonMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#DDDDFF"
+            android:lines="5"
+            android:text="Please touch the screen"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radio Button"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <RadioGroup
+            android:id="@+id/rgStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Success" />
+
+            <RadioButton
+                android:id="@+id/rbGreat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Great" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check Box"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/cbFeel"
+            android:checked="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:onClick="onFeelClick"
+            android:text="Great" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toggle Button"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <ToggleButton
+            android:id="@+id/tbConcentration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onConcentratedClick"
+            android:textOff="Concentrated"
+            android:textOn="Concentrating" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Switch"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <Switch
+            android:id="@+id/swFocus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:switchMinWidth="12sp"
+            android:text="Focus"
+            android:textOff="off"
+            android:textOn="on" />
+
+        <TextView
             android:id="@+id/tvText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,10 +113,10 @@
 
         <SeekBar
             android:id="@+id/sbSize"
-            android:max="50"
-            android:progress="20"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="50"
+            android:progress="20" />
 
         <TextView
             android:layout_width="match_parent"
