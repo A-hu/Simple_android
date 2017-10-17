@@ -2,8 +2,11 @@ package jenhu.simple_android;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ScrollView scrollView;
     private LinearLayout linearLayout;
     private int count = 0;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
         findSubmitViews();
         findCountView();
         tvCount.setText(String.valueOf(count));
+
+        webView = (WebView) findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true); // loading Javascript
+        webView.loadUrl("http://www.google.com");
+        webView.setWebViewClient(new WebViewClient(){ // web view handled by app, not mobile browser
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+               view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
     private void findViews(){
@@ -149,10 +164,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//    public void onLoginClick(View view) {
-//        String name = etName.getText().toString();
-//        String password = etPasswrd.getText().toString();
-//        String text = "Name : " + name + "\nPassword :" + password;
-//        tvResult.setText(text);
-//    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){ // use back button to handle website
+        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()){
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
