@@ -16,6 +16,15 @@
         android:paddingTop="16dp"
         tools:context=".MainActivity">
 
+        <TextView
+            android:id="@+id/tvMenuMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFDD"
+            android:lines="3"
+            android:text="Menu"
+            android:textAlignment="center"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/tvButtonMessage"
@@ -65,10 +74,10 @@
 
         <CheckBox
             android:id="@+id/cbFeel"
-            android:checked="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:checked="false"
             android:onClick="onFeelClick"
             android:text="Great" />
 

@@ -4,6 +4,9 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvText;
     private SeekBar seekBar;
     private TextView tvButtonMessage;
+    private TextView tvMenuMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +73,28 @@ public class MainActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true); // loading Javascript
         webView.loadUrl("http://www.google.com");
-        webView.setWebViewClient(new WebViewClient(){ // web view handled by app, not mobile browser
+        webView.setWebViewClient(new WebViewClient() { // web view handled by app, not mobile browser
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-               view.loadUrl(url);
+                view.loadUrl(url);
                 return true;
             }
         });
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser){
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 String text = rating + " star(s)";
                 Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
             }
         });
+
+        tvMenuMessage = (TextView) findViewById(R.id.tvMenuMessage);
+        registerForContextMenu(tvMenuMessage);
     }
 
-    private void findViews(){
+    private void findViews() {
         tvMessage = (TextView) findViewById(R.id.tvMessage);
         RelativeLayout relativelayout = (RelativeLayout) findViewById(R.id.relativelayout);
 
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 sb.append(String.format("first pointer: (%.1f, %.1f), %n",
                         event.getX(), event.getY()));
                 sb.append("touch state: ");
-                switch(event.getAction()){
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         sb.append("ACTION_DOWN\n");
                         break;
@@ -115,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int pointCount = event.getPointerCount();
                 sb.append(String.format("point count: %d %n", pointCount));
-                for(int i = 0; i < pointCount; i++){
+                for (int i = 0; i < pointCount; i++) {
                     sb.append(String.format("pointer: %d: (%.1f, %.1f) %n",
                             event.getPointerId(i), event.getX(i), event.getY(i)));
                 }
@@ -126,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void findSubmitViews(){
+    private void findSubmitViews() {
         etName = (EditText) findViewById(R.id.etName);
         etPasswrd = (EditText) findViewById(R.id.etPassword);
         etPhone = (EditText) findViewById(R.id.etPhone);
@@ -152,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onSubmitClick(View view){
+    public void onSubmitClick(View view) {
         String user = etName.getText().toString().trim();
         String password = etPasswrd.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
@@ -167,13 +174,13 @@ public class MainActivity extends AppCompatActivity {
         tvSubmitMessage.setText(text);
     }
 
-    private void findCountView(){
+    private void findCountView() {
         tvCount = (TextView) findViewById(R.id.tvCount);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
     }
 
-    public void onAddClick(View view){
+    public void onAddClick(View view) {
         count++;
         tvCount.setText(String.valueOf(count));
 
@@ -191,15 +198,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event){ // use back button to handle website
-        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()){
+    public boolean onKeyDown(int keyCode, KeyEvent event) { // use back button to handle website
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
             webView.goBack();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    public void findSeekBarViews(){
+    public void findSeekBarViews() {
         tvText = (TextView) findViewById(R.id.tvText);
         seekBar = (SeekBar) findViewById(R.id.sbSize);
 
@@ -221,12 +228,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void findButtonViews(){
+    public void findButtonViews() {
         tvButtonMessage = (TextView) findViewById(R.id.tvButtonMessage);
         RadioGroup rgStatus = (RadioGroup) findViewById(R.id.rgStatus);
         Switch swFocus = (Switch) findViewById(R.id.swFocus);
 
-        rgStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+        rgStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -241,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 Switch sw = (Switch) buttonView;
                 String swName = sw.getText().toString();
                 String message = "";
-                if(isChecked) message += swName + " " + sw.getTextOn();
+                if (isChecked) message += swName + " " + sw.getTextOn();
                 else message += swName + " " + sw.getTextOff();
 
                 tvButtonMessage.setText(message);
@@ -249,18 +256,58 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onFeelClick(View v){
+    public void onFeelClick(View v) {
         CheckBox checkBox = (CheckBox) v;
         String checkBoxName = checkBox.getText().toString();
         String message;
-        if(checkBox.isChecked()) message = "checked " + checkBoxName;
+        if (checkBox.isChecked()) message = "checked " + checkBoxName;
         else message = "unchecked " + checkBoxName;
 
         tvButtonMessage.setText(message);
     }
 
-    public void onConcentratedClick(View v){
+    public void onConcentratedClick(View v) {
         ToggleButton toggleButton = (ToggleButton) v;
         tvMessage.setText(toggleButton.getText());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        //menu.add("JeffM") // added in code directly
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        String message;
+        switch(item.getItemId()){
+            case R.id.people:
+                message = "People";
+                break;
+            case R.id.jeff:
+                message = "People > Jeff Bezos";
+                break;
+            case R.id.elon:
+                message = "People > Elon Mask";
+                break;
+            case R.id.mark2:
+                message = "Mark Z";
+                break;
+            case R.id.jeff2:
+                message = "Jeff Bezos 2";
+                break;
+            case R.id.elon2:
+                message = "Elon Mask 2";
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+        tvMenuMessage.setText(message);
+        return true;
     }
 }

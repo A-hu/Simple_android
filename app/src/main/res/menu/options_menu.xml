@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/people"
+        android:title="People">
+
+        <menu>
+            <item
+                android:id="@+id/jeff"
+                android:icon="@drawable/jeff"
+                android:title="JeffB" />
+            <item
+                android:id="@+id/elon"
+                android:icon="@drawable/elon"
+                android:title="ElonM" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/elon2"
+        android:icon="@drawable/elon"
+        android:title="ElonM"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/mark2"
+        android:icon="@drawable/mark"
+        android:title="MarkZ" />
+    <item
+        android:id="@+id/jeff2"
+        android:icon="@drawable/jeff"
+        android:title="JeffB" />
+    <item
+        android:id="@+id/exit"
+        android:title="Exit" />
+</menu>
